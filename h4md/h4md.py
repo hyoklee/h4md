@@ -9,16 +9,17 @@ import os
 def format_dataset(dataset):
     """Format a dataset's information as markdown."""
     info = dataset.info()
-    attrs = dataset.attributes()
+    print(info)
+    # attrs = dataset.attributes()
     
     md = f"### Dataset: {dataset.name()}\n\n"
     md += f"- **Shape**: {info[2]}\n"
     md += f"- **Type**: {info[3]}\n"
     
-    if attrs:
-        md += "\n#### Attributes:\n\n"
-        for name, value in attrs.items():
-            md += f"- **{name}**: {value}\n"
+    # if attrs:
+    #     md += "\n#### Attributes:\n\n"
+    #     for name, value in attrs.items():
+    #         md += f"- **{name}**: {value}\n"
     
     return md
 
@@ -30,15 +31,16 @@ def hdf4_to_markdown(file_path):
         raise click.ClickException(f"Error opening HDF4 file: {e}")
 
     datasets = hdf.datasets()
-    file_attrs = hdf.attributes()
+    print(datasets)
+    # file_attrs = hdf.attributes()
     
     md = f"# HDF4 File: {os.path.basename(file_path)}\n\n"
     
-    if file_attrs:
-        md += "## Global Attributes\n\n"
-        for name, value in file_attrs.items():
-            md += f"- **{name}**: {value}\n"
-        md += "\n"
+    # if file_attrs:
+    #     md += "## Global Attributes\n\n"
+    #     for name, value in file_attrs.items():
+    #         md += f"- **{name}**: {value}\n"
+    #     md += "\n"
     
     if datasets:
         md += "## Datasets\n\n"
